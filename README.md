@@ -1,47 +1,78 @@
 # Openf1::Ruby
 
+A simple Ruby client for the [OpenF1 API](https://openf1.org/), providing access to Formula 1 timing data, telemetry, and race information.
+
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Add this line to your application's Gemfile:
 
-Install the gem and add to the application's Gemfile by executing:
-
-```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+```ruby
+gem "openf1-ruby"
 ```
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
 ```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+gem install openf1-ruby
 ```
 
 ## Usage
 
-To access the OpenF1 API, you need to create a client and then use the client to make requests to the API.
+### Basic Setup
+
+Create a client to interact with the OpenF1 API:
 
 ```ruby
 client = Openf1::Client.new
 ```
 
-## Make a request
+### Available Endpoints
+
+The client provides access to all OpenF1 API endpoints:
 
 ```ruby
+client.car_data      # Car telemetry data
+client.drivers       # Driver information
+client.intervals     # Timing intervals
+client.laps          # Lap timing data
+client.location      # Track location data
+client.meetings      # Race meeting information
+client.pit           # Pit stop data
+client.position      # Car position data
+client.race_control  # Race control messages
+client.sessions      # Session information
+client.stints        # Stint data
+client.team_radio    # Team radio messages
+client.weather       # Weather data
+```
+
+### Making Requests
+
+All endpoint methods accept optional parameters as a hash:
+
+```ruby
+# Get all drivers
 client.drivers
-```
 
-Data is returned as an array of OpenStruct objects.
+# Get drivers for a specific session
+client.drivers(session_key: "12345")
 
-```ruby
-client.drivers.data
-```
-
-### Parameters
-
-Parameters can be passed to the request as a hash.
-
-```ruby
+# Get sessions for a specific year
 client.sessions(year: 2024)
+
+# Get Sprint Sessions for a specific year
+client.sessions({year: 2024, session_name: "Sprint"})
+```
+
+### Response Format
+
+All responses are returned as OpenStruct objects with data accessible through the `data` attribute:
+
+```ruby
+response = client.drivers
+response.data.each do |driver|
+  puts "#{driver.full_name} (#{driver.driver_number})"
+end
 ```
 
 ## Development
@@ -52,4 +83,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/openf1-ruby.
+Bug reports and pull requests are welcome on GitHub at https://github.com/gregdodd/openf1-ruby.
