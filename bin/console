@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+require "openf1"
+require "openf1/client" # Need to explicitly require the client file
+
+# You can add fixtures and/or initialization code here to make experimenting
+# with your gem easier. You can also use a different console, if you like.
+
+require "irb"
+
+def client
+  @client ||= Openf1::Client.new
+end
+
+IRB.start(__FILE__)
