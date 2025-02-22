@@ -10,11 +10,11 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Ruby client for the OpenF1 API"
   spec.description = "A Ruby wrapper for the OpenF1 API providing access to Formula 1 timing data"
-  spec.homepage = "https://github.com/yourusername/openf1-ruby"
+  spec.homepage = "https://github.com/gregdodd/openf1-ruby"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.1.0"
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
+  # spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
