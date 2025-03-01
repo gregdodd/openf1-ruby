@@ -68,11 +68,20 @@ module Openf1
 
     def get_request(endpoint, params = {})
       response = connection.get("#{BASE_URL}/#{endpoint}", params)
+      handle_error_response(response) unless response.success?
       JSON.parse(response.body)
-    rescue Faraday::Error => e
-      raise Openf1::Error, "API request failed: #{e.message}"
     rescue JSON::ParserError => e
       raise Openf1::Error, "Failed to parse API response: #{e.message}"
+    end
+
+    def handle_error_response(response)
+      case response.status
+      when 401 then raise Openf1::AuthenticationError, "Invalid API key"
+      when 404 then raise Openf1::ResourceNotFoundError, "Resource not found"
+      when 429 then raise Openf1::RateLimitError, "Rate limit exceeded"
+      when 500..599 then raise Openf1::ServerError, "Server error: #{response.status}"
+      else raise Openf1::Error, "API error: #{response.status}"
+      end
     end
 
     def connection
