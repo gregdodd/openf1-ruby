@@ -16,6 +16,12 @@ If bundler is not being used to manage dependencies, install the gem by executin
 gem install openf1-ruby
 ```
 
+In your ruby script, add:
+
+```ruby
+require 'openf1'
+```
+
 ## Usage
 
 ### Basic Setup
