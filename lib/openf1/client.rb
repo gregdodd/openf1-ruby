@@ -13,7 +13,7 @@ module Openf1
     end
 
     def car_data(params = {})
-      CarData.new(get_request("car-data", params))
+      CarData.new(get_request("car_data", params))
     end
 
     def drivers(params = {})
