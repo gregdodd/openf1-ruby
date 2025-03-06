@@ -45,7 +45,7 @@ module Openf1
     end
 
     def race_control(params = {})
-      RaceControl.new(get_request("race-control", params))
+      RaceControl.new(get_request("race_control", params))
     end
 
     def sessions(params = {})
@@ -57,7 +57,7 @@ module Openf1
     end
 
     def team_radio(params = {})
-      TeamRadio.new(get_request("team-radio", params))
+      TeamRadio.new(get_request("team_radio", params))
     end
 
     def weather(params = {})
