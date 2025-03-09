@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    openf1-ruby (0.1.0)
+    openf1-ruby (0.1.1)
       faraday (~> 2.0)
 
 GEM
